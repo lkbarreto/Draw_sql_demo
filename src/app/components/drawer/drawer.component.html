@@ -1,0 +1,105 @@
+<div class="drawer-main">
+    <mat-toolbar class="header">
+        <span>Tables</span>
+    </mat-toolbar>
+
+    <mat-accordion>
+        <mat-expansion-panel class="item-container " [expanded]="isExpanded" >
+            <mat-expansion-panel-header class="header-new"> 
+                <mat-panel-title>
+                    New Table
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div [formGroup]="form" class="form-container">
+                <mat-form-field fullwidth class="field small" appearance="outline">
+                    <input formControlName="tableName" matInput placeholder="Table name">
+                    <mat-error class="small">
+                        Required
+                    </mat-error>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+
+                <div class="subTitle">Columns</div>
+                <div class="sub-form" *ngFor="let item of columns let i = index">
+                    <div class="column-item"> {{item.id}}</div>
+                    <div class="column-item">{{item.type}}</div>
+                    <div class="sub-item">{{item.isUnique ? "Unique" : ""}}</div>
+                    <button (click)="editColumn(item, i)" class="edit-button" color="primary" mat-icon-button>
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)="deleteColumn(i)" class="edit-button" color="primary" mat-icon-button>
+                        <mat-icon class="small">delete</mat-icon>
+                    </button>
+                </div>
+
+                <div class="sub-form">
+                    <mat-form-field class="field" appearance="outline">
+                        <input formControlName="columnName" matInput placeholder="Name">
+                        <mat-error class="small">
+                            Required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field" appearance="outline">
+                        <mat-label>Type</mat-label>
+                        <mat-select formControlName="dataType">
+                            <mat-option *ngFor="let type of dataTypes" [value]="type">
+                                {{type}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error class="small">
+                            Required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-checkbox color="primary" formControlName="isUnique">Unique</mat-checkbox>
+                </div>
+
+                <button (click)="addColumn()" mat-button color="primary">
+                    <mat-icon>add</mat-icon>
+                    Add Column
+                </button>
+
+                <mat-divider></mat-divider>
+
+                <div class="button-container">
+                    <button (click)="addTable()" mat-button color="primary">
+                        Save Table
+                    </button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngFor="let table of tables; let i = index" class="item-container" >
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{table.id}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="form-container">
+                <mat-divider></mat-divider>
+                <div class="subTitle">Columns</div>
+
+                <div class="sub-form" *ngFor="let column of table.columns; let y = index">
+                    <div class="column-item"> {{column.id}}</div>
+                    <div class="column-item">{{column.type}}</div>
+                    <div class="sub-item">{{column.isUnique ? "Unique" : ""}}</div>
+                    <button (click)="editColumnSaved(column, y , i)" class="edit-button" color="primary" mat-icon-button>
+                        <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button (click)="deleteColumnSaved( y , i)" class="edit-button" color="primary" mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="button-container">
+                    <button (click)="deleteTable( table.id)" class="edit-button" color="primary" mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

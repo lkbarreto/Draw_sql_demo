@@ -1,0 +1,32 @@
+<div class="dialog-main">
+    <h1 mat-dialog-title>Edit Column</h1>
+    <div mat-dialog-content>
+        <div [formGroup]="formGroup" class="form-container" >
+
+            <mat-form-field class="field" appearance="outline">
+                <input formControlName="name" matInput placeholder="Name">
+                <mat-error class="small">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of data.dataTypes" [value]="type">
+                        {{type}}
+                    </mat-option>
+                </mat-select>
+                <mat-error class="small">
+                    Required
+                </mat-error>
+            </mat-form-field>
+            <mat-checkbox color="primary" formControlName="isUnique">Unique</mat-checkbox>
+        </div>
+
+    </div>
+    <div mat-dialog-actions align="end">
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button mat-button [mat-dialog-close]="formGroup.value" cdkFocusInitial>Save</button>
+    </div>
+</div>
