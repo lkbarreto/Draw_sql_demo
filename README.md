@@ -22,6 +22,51 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## JSON-SERVER API
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+json example: 
+
+{
+  "tables": [
+    {
+      "id": "tabla 1",
+      "columns": [
+        {
+          "id": "columna1",
+          "type": "Text",
+          "isUnique": false
+        },
+        {
+          "id": "columna 2",
+          "type": "Number",
+          "isUnique": true
+        },
+        {
+          "id": "columna 3",
+          "type": "Boolean",
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "tabla 2",
+      "columns": [
+        {
+          "id": "name",
+          "type": "Text",
+          "isUnique": false
+        },
+        {
+          "id": "id",
+          "type": "Number",
+          "isUnique": true
+        },
+        {
+          "id": "table",
+          "type": "Boolean",
+          "isUnique": false
+        }
+      ]
+    }
+  ]
+}
